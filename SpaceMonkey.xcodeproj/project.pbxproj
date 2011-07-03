@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A351C42D13BFDC610072ABB0 /* PauseMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A351C42C13BFDC610072ABB0 /* PauseMenuLayer.m */; };
+		A351C43413BFE2C50072ABB0 /* cembg.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43313BFE2C50072ABB0 /* cembg.png */; };
+		A351C44313BFE4DB0072ABB0 /* Button1.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43713BFE4DB0072ABB0 /* Button1.png */; };
+		A351C44413BFE4DB0072ABB0 /* Button1Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43813BFE4DB0072ABB0 /* Button1Sel.png */; };
+		A351C44513BFE4DB0072ABB0 /* Button2.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43913BFE4DB0072ABB0 /* Button2.png */; };
+		A351C44613BFE4DB0072ABB0 /* Button2Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43A13BFE4DB0072ABB0 /* Button2Sel.png */; };
+		A351C44713BFE4DB0072ABB0 /* Button3.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43B13BFE4DB0072ABB0 /* Button3.png */; };
+		A351C44813BFE4DB0072ABB0 /* Button3Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43C13BFE4DB0072ABB0 /* Button3Sel.png */; };
+		A351C44913BFE4DB0072ABB0 /* ButtonMinus.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43D13BFE4DB0072ABB0 /* ButtonMinus.png */; };
+		A351C44A13BFE4DB0072ABB0 /* ButtonMinusSel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43E13BFE4DB0072ABB0 /* ButtonMinusSel.png */; };
+		A351C44B13BFE4DB0072ABB0 /* ButtonPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C43F13BFE4DB0072ABB0 /* ButtonPlus.png */; };
+		A351C44C13BFE4DB0072ABB0 /* ButtonPlusSel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C44013BFE4DB0072ABB0 /* ButtonPlusSel.png */; };
+		A351C44D13BFE4DB0072ABB0 /* ButtonStar.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C44113BFE4DB0072ABB0 /* ButtonStar.png */; };
+		A351C44E13BFE4DB0072ABB0 /* ButtonStarSel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C44213BFE4DB0072ABB0 /* ButtonStarSel.png */; };
 		A3FEB82713BE5DF8006F0FF1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FEB82613BE5DF8006F0FF1 /* QuartzCore.framework */; };
 		A3FEB82913BE5DF8006F0FF1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FEB82813BE5DF8006F0FF1 /* OpenGLES.framework */; };
 		A3FEB82B13BE5DF8006F0FF1 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FEB82A13BE5DF8006F0FF1 /* OpenAL.framework */; };
@@ -164,6 +178,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A351C42B13BFDC610072ABB0 /* PauseMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuLayer.h; sourceTree = "<group>"; };
+		A351C42C13BFDC610072ABB0 /* PauseMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuLayer.m; sourceTree = "<group>"; };
+		A351C43313BFE2C50072ABB0 /* cembg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cembg.png; sourceTree = "<group>"; };
+		A351C43713BFE4DB0072ABB0 /* Button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1.png; sourceTree = "<group>"; };
+		A351C43813BFE4DB0072ABB0 /* Button1Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1Sel.png; sourceTree = "<group>"; };
+		A351C43913BFE4DB0072ABB0 /* Button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2.png; sourceTree = "<group>"; };
+		A351C43A13BFE4DB0072ABB0 /* Button2Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2Sel.png; sourceTree = "<group>"; };
+		A351C43B13BFE4DB0072ABB0 /* Button3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button3.png; sourceTree = "<group>"; };
+		A351C43C13BFE4DB0072ABB0 /* Button3Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button3Sel.png; sourceTree = "<group>"; };
+		A351C43D13BFE4DB0072ABB0 /* ButtonMinus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonMinus.png; sourceTree = "<group>"; };
+		A351C43E13BFE4DB0072ABB0 /* ButtonMinusSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonMinusSel.png; sourceTree = "<group>"; };
+		A351C43F13BFE4DB0072ABB0 /* ButtonPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPlus.png; sourceTree = "<group>"; };
+		A351C44013BFE4DB0072ABB0 /* ButtonPlusSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPlusSel.png; sourceTree = "<group>"; };
+		A351C44113BFE4DB0072ABB0 /* ButtonStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonStar.png; sourceTree = "<group>"; };
+		A351C44213BFE4DB0072ABB0 /* ButtonStarSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonStarSel.png; sourceTree = "<group>"; };
 		A3FEB82213BE5DF8006F0FF1 /* SpaceMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FEB82613BE5DF8006F0FF1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A3FEB82813BE5DF8006F0FF1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -494,6 +523,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A351C43613BFE4DB0072ABB0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A351C43713BFE4DB0072ABB0 /* Button1.png */,
+				A351C43813BFE4DB0072ABB0 /* Button1Sel.png */,
+				A351C43913BFE4DB0072ABB0 /* Button2.png */,
+				A351C43A13BFE4DB0072ABB0 /* Button2Sel.png */,
+				A351C43B13BFE4DB0072ABB0 /* Button3.png */,
+				A351C43C13BFE4DB0072ABB0 /* Button3Sel.png */,
+				A351C43D13BFE4DB0072ABB0 /* ButtonMinus.png */,
+				A351C43E13BFE4DB0072ABB0 /* ButtonMinusSel.png */,
+				A351C43F13BFE4DB0072ABB0 /* ButtonPlus.png */,
+				A351C44013BFE4DB0072ABB0 /* ButtonPlusSel.png */,
+				A351C44113BFE4DB0072ABB0 /* ButtonStar.png */,
+				A351C44213BFE4DB0072ABB0 /* ButtonStarSel.png */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		A3FEB81713BE5DF7006F0FF1 = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +577,8 @@
 		A3FEB83613BE5DF8006F0FF1 /* SpaceMonkey */ = {
 			isa = PBXGroup;
 			children = (
+				A351C42B13BFDC610072ABB0 /* PauseMenuLayer.h */,
+				A351C42C13BFDC610072ABB0 /* PauseMenuLayer.m */,
 				A3FEB9EE13BE5DFB006F0FF1 /* AppDelegate.h */,
 				A3FEB9EF13BE5DFB006F0FF1 /* AppDelegate.mm */,
 				A3FEB9F113BE5DFB006F0FF1 /* RootViewController.h */,
@@ -553,6 +603,8 @@
 		A3FEB83713BE5DF8006F0FF1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A351C43613BFE4DB0072ABB0 /* Buttons */,
+				A351C43313BFE2C50072ABB0 /* cembg.png */,
 				A3FEB83813BE5DF8006F0FF1 /* Default.png */,
 				A3FEB83A13BE5DF8006F0FF1 /* fps_images.png */,
 				A3FEB83C13BE5DF8006F0FF1 /* Icon-72.png */,
@@ -957,6 +1009,19 @@
 				A3FEB84713BE5DF8006F0FF1 /* Icon@2x.png in Resources */,
 				A3FEB84A13BE5DF8006F0FF1 /* iTunesArtwork in Resources */,
 				A3FEB9FC13BE5DFB006F0FF1 /* blocks.png in Resources */,
+				A351C43413BFE2C50072ABB0 /* cembg.png in Resources */,
+				A351C44313BFE4DB0072ABB0 /* Button1.png in Resources */,
+				A351C44413BFE4DB0072ABB0 /* Button1Sel.png in Resources */,
+				A351C44513BFE4DB0072ABB0 /* Button2.png in Resources */,
+				A351C44613BFE4DB0072ABB0 /* Button2Sel.png in Resources */,
+				A351C44713BFE4DB0072ABB0 /* Button3.png in Resources */,
+				A351C44813BFE4DB0072ABB0 /* Button3Sel.png in Resources */,
+				A351C44913BFE4DB0072ABB0 /* ButtonMinus.png in Resources */,
+				A351C44A13BFE4DB0072ABB0 /* ButtonMinusSel.png in Resources */,
+				A351C44B13BFE4DB0072ABB0 /* ButtonPlus.png in Resources */,
+				A351C44C13BFE4DB0072ABB0 /* ButtonPlusSel.png in Resources */,
+				A351C44D13BFE4DB0072ABB0 /* ButtonStar.png in Resources */,
+				A351C44E13BFE4DB0072ABB0 /* ButtonStarSel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,6 +1168,7 @@
 				A3FEB9F313BE5DFB006F0FF1 /* RootViewController.m in Sources */,
 				A3FEB9F613BE5DFB006F0FF1 /* HelloWorldLayer.mm in Sources */,
 				A3FEB9F913BE5DFB006F0FF1 /* GLES-Render.mm in Sources */,
+				A351C42D13BFDC610072ABB0 /* PauseMenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1264,7 @@
 				A3FEBA0113BE5DFB006F0FF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

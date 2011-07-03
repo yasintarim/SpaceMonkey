@@ -13,7 +13,8 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
-	
+	CCSprite *m_menuButton;
+	CCSprite *m_backgroundImg;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

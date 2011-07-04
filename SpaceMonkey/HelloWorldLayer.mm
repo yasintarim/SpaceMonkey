@@ -35,10 +35,11 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		m_backgroundImg = [CCSprite spriteWithFile:@"cembg.png"];
-		
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
+		PauseMenuButtonLayer *menuButton = [[[PauseMenuButtonLayer alloc] init] autorelease];
+		[self addChild:menuButton z:2];
 		m_backgroundImg.position = ccp(winSize.width/2, winSize.height/2);
-		[self addChild:m_backgroundImg];
+		[self addChild:m_backgroundImg z:1];
 	}
 	return self;
 }

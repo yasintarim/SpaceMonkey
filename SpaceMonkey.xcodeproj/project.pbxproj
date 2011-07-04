@@ -21,6 +21,9 @@
 		A351C44C13BFE4DB0072ABB0 /* ButtonPlusSel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C44013BFE4DB0072ABB0 /* ButtonPlusSel.png */; };
 		A351C44D13BFE4DB0072ABB0 /* ButtonStar.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C44113BFE4DB0072ABB0 /* ButtonStar.png */; };
 		A351C44E13BFE4DB0072ABB0 /* ButtonStarSel.png in Resources */ = {isa = PBXBuildFile; fileRef = A351C44213BFE4DB0072ABB0 /* ButtonStarSel.png */; };
+		A377248613C23F750092E0F8 /* PauseMenuButtonLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A377248513C23F750092E0F8 /* PauseMenuButtonLayer.m */; };
+		A377248B13C240A10092E0F8 /* menubg.png in Resources */ = {isa = PBXBuildFile; fileRef = A377248A13C240A10092E0F8 /* menubg.png */; };
+		A391421D13C10E9F006BCFD7 /* guzellik.png in Resources */ = {isa = PBXBuildFile; fileRef = A391421C13C10E9F006BCFD7 /* guzellik.png */; };
 		A3FEB82713BE5DF8006F0FF1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FEB82613BE5DF8006F0FF1 /* QuartzCore.framework */; };
 		A3FEB82913BE5DF8006F0FF1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FEB82813BE5DF8006F0FF1 /* OpenGLES.framework */; };
 		A3FEB82B13BE5DF8006F0FF1 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FEB82A13BE5DF8006F0FF1 /* OpenAL.framework */; };
@@ -193,6 +196,10 @@
 		A351C44013BFE4DB0072ABB0 /* ButtonPlusSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPlusSel.png; sourceTree = "<group>"; };
 		A351C44113BFE4DB0072ABB0 /* ButtonStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonStar.png; sourceTree = "<group>"; };
 		A351C44213BFE4DB0072ABB0 /* ButtonStarSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonStarSel.png; sourceTree = "<group>"; };
+		A377248413C23F750092E0F8 /* PauseMenuButtonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuButtonLayer.h; sourceTree = "<group>"; };
+		A377248513C23F750092E0F8 /* PauseMenuButtonLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuButtonLayer.m; sourceTree = "<group>"; };
+		A377248A13C240A10092E0F8 /* menubg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubg.png; sourceTree = "<group>"; };
+		A391421C13C10E9F006BCFD7 /* guzellik.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guzellik.png; sourceTree = "<group>"; };
 		A3FEB82213BE5DF8006F0FF1 /* SpaceMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FEB82613BE5DF8006F0FF1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A3FEB82813BE5DF8006F0FF1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -542,6 +549,26 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		A377248313C23F4A0092E0F8 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				A351C42B13BFDC610072ABB0 /* PauseMenuLayer.h */,
+				A351C42C13BFDC610072ABB0 /* PauseMenuLayer.m */,
+				A377248413C23F750092E0F8 /* PauseMenuButtonLayer.h */,
+				A377248513C23F750092E0F8 /* PauseMenuButtonLayer.m */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
+		A377248913C240450092E0F8 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				A351C43313BFE2C50072ABB0 /* cembg.png */,
+				A377248A13C240A10092E0F8 /* menubg.png */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
 		A3FEB81713BE5DF7006F0FF1 = {
 			isa = PBXGroup;
 			children = (
@@ -577,8 +604,7 @@
 		A3FEB83613BE5DF8006F0FF1 /* SpaceMonkey */ = {
 			isa = PBXGroup;
 			children = (
-				A351C42B13BFDC610072ABB0 /* PauseMenuLayer.h */,
-				A351C42C13BFDC610072ABB0 /* PauseMenuLayer.m */,
+				A377248313C23F4A0092E0F8 /* Menus */,
 				A3FEB9EE13BE5DFB006F0FF1 /* AppDelegate.h */,
 				A3FEB9EF13BE5DFB006F0FF1 /* AppDelegate.mm */,
 				A3FEB9F113BE5DFB006F0FF1 /* RootViewController.h */,
@@ -603,9 +629,10 @@
 		A3FEB83713BE5DF8006F0FF1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A377248913C240450092E0F8 /* Menus */,
 				A351C43613BFE4DB0072ABB0 /* Buttons */,
-				A351C43313BFE2C50072ABB0 /* cembg.png */,
 				A3FEB83813BE5DF8006F0FF1 /* Default.png */,
+				A391421C13C10E9F006BCFD7 /* guzellik.png */,
 				A3FEB83A13BE5DF8006F0FF1 /* fps_images.png */,
 				A3FEB83C13BE5DF8006F0FF1 /* Icon-72.png */,
 				A3FEB83E13BE5DF8006F0FF1 /* Icon-Small-50.png */,
@@ -1022,6 +1049,8 @@
 				A351C44C13BFE4DB0072ABB0 /* ButtonPlusSel.png in Resources */,
 				A351C44D13BFE4DB0072ABB0 /* ButtonStar.png in Resources */,
 				A351C44E13BFE4DB0072ABB0 /* ButtonStarSel.png in Resources */,
+				A391421D13C10E9F006BCFD7 /* guzellik.png in Resources */,
+				A377248B13C240A10092E0F8 /* menubg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,6 +1198,7 @@
 				A3FEB9F613BE5DFB006F0FF1 /* HelloWorldLayer.mm in Sources */,
 				A3FEB9F913BE5DFB006F0FF1 /* GLES-Render.mm in Sources */,
 				A351C42D13BFDC610072ABB0 /* PauseMenuLayer.m in Sources */,
+				A377248613C23F750092E0F8 /* PauseMenuButtonLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1190,7 +1220,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1205,7 +1235,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -1221,8 +1251,10 @@
 				GCC_PREFIX_HEADER = SpaceMonkey/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = SpaceMonkey/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = SpaceMonkey/libs;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1237,8 +1269,10 @@
 				GCC_PREFIX_HEADER = SpaceMonkey/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = SpaceMonkey/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = SpaceMonkey/libs;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

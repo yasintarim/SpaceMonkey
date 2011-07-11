@@ -7,7 +7,7 @@
 //
 
 #import "PauseMenuButtonLayer.h"
-#define PAUSEMENUTAG	9999
+#define PAUSEMENUTAG	1
 @implementation PauseMenuButtonLayer
 
 - (id)init
@@ -19,14 +19,12 @@
 		CCMenuItem *pause = [CCMenuItemImage itemFromNormalImage:@"ButtonMinus.png" selectedImage:@"ButtonMinusSel.png"];
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 	__block BOOL m_menuVisible = NO;
-		m_pauseMenu = [[PauseMenuLayer alloc] initWithColor:ccc4(155, 155, 65, 125) width:winSize.width * 0.4 height:winSize.height * 0.4];
+		m_pauseMenu = [[PauseMenuLayer alloc] initWithColor:ccc4(155, 155, 65, 125) width:-1 height:-1];
 		m_pauseMenu.tag = PAUSEMENUTAG;
 		
 		CCMenuItemToggle *itemToggle = [CCMenuItemToggle itemWithBlock:^(id arg) {
 			
-			m_menuVisible = !m_menuVisible;
-			
-			if (m_menuVisible) {
+			if ((m_menuVisible = !m_menuVisible)) {
 				[[self parent] addChild:m_pauseMenu z:PAUSEMENUTAG];
 			}
 			else
@@ -36,8 +34,8 @@
 		} items:resume,pause, nil];
 		
 		CCMenu *menu = [CCMenu menuWithItems:itemToggle, nil];
-
-		//menu.position = ccp(winSize.width - 100, winSize.height  - 100);
+		CGSize menuSize= [resume contentSize];
+		menu.position = ccp(winSize.width - menuSize.width /2, winSize.height  - menuSize.height/2);
 		[self addChild:menu z:1];
 
     }

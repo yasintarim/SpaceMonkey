@@ -37,6 +37,7 @@
 		m_backgroundImg = [CCSprite spriteWithFile:@"cembg.png"];
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		PauseMenuButtonLayer *menuButton = [[[PauseMenuButtonLayer alloc] init] autorelease];
+		//menuButton.position = [menuButton]
 		[self addChild:menuButton z:2];
 		m_backgroundImg.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild:m_backgroundImg z:1];

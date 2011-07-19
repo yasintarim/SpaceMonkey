@@ -7,7 +7,7 @@
 //
 
 #import "PauseMenuButtonLayer.h"
-#define PAUSEMENUTAG	1
+#define PAUSEMENUTAG	999
 @implementation PauseMenuButtonLayer
 
 - (id)init
@@ -26,10 +26,12 @@
 			
 			if ((m_menuVisible = !m_menuVisible)) {
 				[[self parent] addChild:m_pauseMenu z:PAUSEMENUTAG];
+				[[CCDirector sharedDirector] pause];
 			}
 			else
 			{
 				[[self parent] removeChildByTag:PAUSEMENUTAG cleanup:YES];
+				[[CCDirector sharedDirector] resume];
 			}			
 		} items:resume,pause, nil];
 		

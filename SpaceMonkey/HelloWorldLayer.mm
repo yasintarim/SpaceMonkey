@@ -42,15 +42,25 @@
 		m_backgroundImg.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild:m_backgroundImg z:1];
 		
-		
-		m_ball = [CCSprite spriteWithFile:@"Ball.jpg" rect:CGRectMake(0, 0, 52, 52)];
-		m_ball.position = ccp(100, 100);
+		self.isAccelerometerEnabled = YES;
+		m_ball = [CCSprite spriteWithFile:@"ball.png"];
+		m_ball.position = ccp(100, 300);
 		[self addChild:m_ball z:2];
 		
+		CCSprite *m_ball2 = [CCSprite spriteWithFile:@"cemm.png"];
+		m_ball2.position = ccp(300, 300);
+		[self addChild:m_ball2 z:2];
+		
+		CCSprite *m_cembabaimg = [CCSprite spriteWithFile:@"cembaba.png"];
+		m_cembabaimg.position = ccp(300, 300);
+		[self addChild:m_cembabaimg z:2];
+		
+		
+		
 		//create a world
-	
+		
 		b2Vec2 gravity = b2Vec2(0.0f,-30.0f);
-		bool doSleep = true;
+		bool doSleep = false;
 		m_world = new b2World(gravity, doSleep);
 		
 		//create edges around the screen
@@ -80,6 +90,24 @@
 		groundBox.SetAsEdge(b2Vec2(widthRatio, heightRatio), b2Vec2(widthRatio, 0));
 		groundBody->CreateFixture(&boxShapeDef);
 		
+		b2BodyDef cembabaBodyDef;
+		cembabaBodyDef.type = b2_dynamicBody;
+		cembabaBodyDef.position.Set(250/PTM_RATIO, 250/PTM_RATIO);
+		cembabaBodyDef.userData = m_cembabaimg;
+		
+		b2Body* cembabaBody = m_world->CreateBody(&cembabaBodyDef);
+		
+		b2CircleShape cembabaCircle;
+		cembabaCircle.m_radius = 130 / 2 / PTM_RATIO;
+		
+		
+		b2FixtureDef cembabaFixture;
+		cembabaFixture.shape = &cembabaCircle;
+		cembabaFixture.density = 9;
+		cembabaFixture.friction = 0.1;
+		cembabaFixture.restitution = 0.5;
+		
+		cembabaBody->CreateFixture(&cembabaFixture);
 		
 		b2BodyDef ballBodyDef;
 		ballBodyDef.type = b2_dynamicBody;
@@ -88,17 +116,36 @@
 		m_body = m_world->CreateBody(&ballBodyDef);
 		
 		b2CircleShape circle;
-		circle.m_radius = 26.0 / PTM_RATIO;
+		circle.m_radius = 43 / 2/  PTM_RATIO;
 		
 		b2FixtureDef ballShapeDef;
 		ballShapeDef.shape = &circle;
-		ballShapeDef.density = 1.0f;
-		ballShapeDef.friction = 0.2f;
-		ballShapeDef.restitution = 0.8f;
+		ballShapeDef.density = 2.0f;
+		ballShapeDef.friction = 0.1f;
+		ballShapeDef.restitution = 0.9f;
 		
 		m_body->CreateFixture(&ballShapeDef);
-
-
+		
+		
+		
+		b2BodyDef myBoxDef;
+		myBoxDef.type = b2_dynamicBody;
+		myBoxDef.position.Set(300/ PTM_RATIO, 300/ PTM_RATIO);
+		myBoxDef.userData = m_ball2;
+		
+		b2Body* dynamicBody = m_world->CreateBody(&myBoxDef);
+		
+		b2PolygonShape square;
+		
+		square.SetAsBox(50.5/PTM_RATIO, 50.5/PTM_RATIO);
+		
+		b2FixtureDef myBoxFixture;
+		myBoxFixture.shape = &square;
+		myBoxFixture.density = 5;
+		myBoxFixture.restitution = 0.6f;
+		
+		dynamicBody->CreateFixture(&myBoxFixture);		
+		
 		[self schedule:@selector(tick:)];
 		
 	}
@@ -117,7 +164,13 @@
     }
 	
 }
-
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+	
+    // Landscape left values
+    b2Vec2 gravity(-acceleration.y * 15, acceleration.x *15);
+    m_world->SetGravity(gravity);
+	
+}
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {

@@ -34,150 +34,172 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
-		m_backgroundImg = [CCSprite spriteWithFile:@"cembg.png"];
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
-		PauseMenuButtonLayer *menuButton = [[[PauseMenuButtonLayer alloc] init] autorelease];
-		//menuButton.position = [menuButton]
-		[self addChild:menuButton z:2];
+		
+		m_backgroundImg = [CCSprite spriteWithFile:@"cembg.png"];
+		[m_backgroundImg setOpacity:210];
 		m_backgroundImg.position = ccp(winSize.width/2, winSize.height/2);
-		[self addChild:m_backgroundImg z:1];
+		[self addChild:m_backgroundImg z:0];
 		
+		
+		
+		
+		PauseMenuButtonLayer *menuButton = [[[PauseMenuButtonLayer alloc] init] autorelease];
+		[self addChild:menuButton z:92];
 		self.isAccelerometerEnabled = YES;
-		m_ball = [CCSprite spriteWithFile:@"ball.png"];
-		m_ball.position = ccp(100, 300);
-		[self addChild:m_ball z:2];
+		[self createWorld];
+		[self setupDebugDraw];
+		[self scheduleUpdate];
 		
-		CCSprite *m_ball2 = [CCSprite spriteWithFile:@"cemm.png"];
-		m_ball2.position = ccp(300, 300);
-		[self addChild:m_ball2 z:2];
-		
-		CCSprite *m_cembabaimg = [CCSprite spriteWithFile:@"cembaba.png"];
-		m_cembabaimg.position = ccp(300, 300);
-		[self addChild:m_cembabaimg z:2];
-		
-		
-		
-		//create a world
-		
-		b2Vec2 gravity = b2Vec2(0.0f,-30.0f);
-		bool doSleep = false;
-		m_world = new b2World(gravity, doSleep);
-		
-		//create edges around the screen
-		
-		b2BodyDef groundBodyDef;
-		groundBodyDef.position.Set(0, 0);
-		
-		b2Body* groundBody = m_world->CreateBody(&groundBodyDef);
-		
-		b2PolygonShape groundBox;
-		b2FixtureDef boxShapeDef;
-		boxShapeDef.shape = &groundBox;
-		
-		float heightRatio = winSize.height / PTM_RATIO;
-		float widthRatio = winSize.width / PTM_RATIO;
-		
-		
-		groundBox.SetAsEdge(b2Vec2(0, 0), b2Vec2(widthRatio, 0));
-		groundBody->CreateFixture(&boxShapeDef);
-		
-		groundBox.SetAsEdge(b2Vec2(0,0), b2Vec2(0, heightRatio));
-		groundBody->CreateFixture(&boxShapeDef);
-		
-		groundBox.SetAsEdge(b2Vec2(0, heightRatio), b2Vec2(widthRatio, heightRatio));
-		groundBody->CreateFixture(&boxShapeDef);
-		
-		groundBox.SetAsEdge(b2Vec2(widthRatio, heightRatio), b2Vec2(widthRatio, 0));
-		groundBody->CreateFixture(&boxShapeDef);
-		
-		b2BodyDef cembabaBodyDef;
-		cembabaBodyDef.type = b2_dynamicBody;
-		cembabaBodyDef.position.Set(250/PTM_RATIO, 250/PTM_RATIO);
-		cembabaBodyDef.userData = m_cembabaimg;
-		
-		b2Body* cembabaBody = m_world->CreateBody(&cembabaBodyDef);
-		
-		b2CircleShape cembabaCircle;
-		cembabaCircle.m_radius = 130 / 2 / PTM_RATIO;
-		
-		
-		b2FixtureDef cembabaFixture;
-		cembabaFixture.shape = &cembabaCircle;
-		cembabaFixture.density = 9;
-		cembabaFixture.friction = 0.1;
-		cembabaFixture.restitution = 0.5;
-		
-		cembabaBody->CreateFixture(&cembabaFixture);
-		
-		b2BodyDef ballBodyDef;
-		ballBodyDef.type = b2_dynamicBody;
-		ballBodyDef.position.Set(100/PTM_RATIO, 100/PTM_RATIO);
-		ballBodyDef.userData = m_ball;
-		m_body = m_world->CreateBody(&ballBodyDef);
-		
-		b2CircleShape circle;
-		circle.m_radius = 43 / 2/  PTM_RATIO;
-		
-		b2FixtureDef ballShapeDef;
-		ballShapeDef.shape = &circle;
-		ballShapeDef.density = 2.0f;
-		ballShapeDef.friction = 0.1f;
-		ballShapeDef.restitution = 0.9f;
-		
-		m_body->CreateFixture(&ballShapeDef);
-		
-		
-		
-		b2BodyDef myBoxDef;
-		myBoxDef.type = b2_dynamicBody;
-		myBoxDef.position.Set(300/ PTM_RATIO, 300/ PTM_RATIO);
-		myBoxDef.userData = m_ball2;
-		
-		b2Body* dynamicBody = m_world->CreateBody(&myBoxDef);
-		
-		b2PolygonShape square;
-		
-		square.SetAsBox(50.5/PTM_RATIO, 50.5/PTM_RATIO);
-		
-		b2FixtureDef myBoxFixture;
-		myBoxFixture.shape = &square;
-		myBoxFixture.density = 5;
-		myBoxFixture.restitution = 0.6f;
-		
-		dynamicBody->CreateFixture(&myBoxFixture);		
-		
-		[self schedule:@selector(tick:)];
+		[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 		
 	}
 	return self;
 }
-- (void)tick:(ccTime) dt {
+- (void)update:(ccTime) dt {
 	
-    m_world->Step(dt, 10, 10);
-    for(b2Body *b = m_world->GetBodyList(); b; b=b->GetNext()) {    
-        if (b->GetUserData() != NULL) {
-            CCSprite *ballData = (CCSprite *)b->GetUserData();
-            ballData.position = ccp(b->GetPosition().x * PTM_RATIO,
-                                    b->GetPosition().y * PTM_RATIO);
-            ballData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-        }        
-    }
-	
+    m_world->Step(dt, 3, 3);
+    b2Vec2 point;
+
+
+	for (b2Body* b = m_world->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetUserData() != NULL) {
+			//Synchronize the AtlasSprites position and rotation with the corresponding body
+			CCSprite *myActor = (CCSprite*)b->GetUserData();
+			myActor.position = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
+			myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+
+		}	
+	}	
 }
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+
+-(void)draw {
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    m_world->DrawDebugData();
+    glEnable(GL_TEXTURE_2D);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+-(void)setupDebugDraw {
+    debugDraw = new GLESDebugDraw(PTM_RATIO *[[CCDirector sharedDirector]
+											  contentScaleFactor]);
+    m_world->SetDebugDraw(debugDraw);
+    debugDraw->SetFlags(b2DebugDraw::e_shapeBit);
+}
+
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
 	
     // Landscape left values
     b2Vec2 gravity(-acceleration.y * 15, acceleration.x *15);
     m_world->SetGravity(gravity);
 	
 }
+
+
+
+-(void)createBoxAtLocation:(CGPoint)location withSize:(CGSize)size
+{
+	CCSprite *c1 = c1 = [CCSprite spriteWithFile:@"c1.png"];
+	[self addChild:c1];
+	c1.position = ccp(location.x, location.y);
+	
+	b2Vec2 positon = b2Vec2(location.x / PTM_RATIO, location.y / PTM_RATIO);
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.position = positon;
+	bodyDef.userData = c1;
+	
+	b2Body* body= m_world->CreateBody(&bodyDef);
+	
+	b2PolygonShape shape;
+	shape.SetAsBox(size.width / 2.0 /PTM_RATIO, size.height / 2.0 /PTM_RATIO);
+	
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &shape;
+	fixtureDef.density = 100;
+	fixtureDef.restitution = 0.1;
+	body->CreateFixture(&fixtureDef);
+	//body->SetUserData(sprite);
+	
+}
+
+-(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint touchLocation = [touch locationInView:[touch view]];
+    touchLocation = [[CCDirector sharedDirector]
+					 convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    b2Vec2 locationWorld =
+	b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+    [self createBoxAtLocation:touchLocation
+					 withSize:CGSizeMake(30, 30)];
+    return TRUE;
+}
+-(void)createWorld
+{	
+	b2Vec2 gravity = b2Vec2(0.0f,-30.0f);
+	
+	bool doSleep = false;
+	m_world = new b2World(gravity, doSleep);
+	[self createGround];
+}
+
+-(void)createGround
+{
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+
+	b2BodyDef groundBodyDef;
+	groundBodyDef.position.Set(0, 0);
+	
+	b2Body* groundBody = m_world->CreateBody(&groundBodyDef);
+	
+	b2PolygonShape groundBox;
+	b2FixtureDef boxShapeDef;
+	boxShapeDef.shape = &groundBox;
+	
+	float margin = 10;
+	float marginRatio = margin / PTM_RATIO;
+	float heightRatio = (winSize.height - margin) / PTM_RATIO;
+	float widthRatio = (winSize.width - margin) / PTM_RATIO;
+
+	
+	b2Vec2 lowerLeft = b2Vec2(marginRatio, marginRatio);
+	b2Vec2 lowerRight = b2Vec2(widthRatio, marginRatio);
+	b2Vec2 upperLeft = b2Vec2(marginRatio, heightRatio);
+	b2Vec2 upperRight = b2Vec2(widthRatio, heightRatio);
+		
+	
+	groundBox.SetAsEdge(lowerLeft, lowerRight);
+	groundBody->CreateFixture(&boxShapeDef);
+	
+	groundBox.SetAsEdge(lowerRight, upperRight);
+	groundBody->CreateFixture(&boxShapeDef);
+	
+	groundBox.SetAsEdge(upperRight, upperLeft);
+	groundBody->CreateFixture(&boxShapeDef);
+	
+	groundBox.SetAsEdge(upperLeft, lowerLeft);
+	groundBody->CreateFixture(&boxShapeDef);
+}
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
-	delete m_world;
+	if (debugDraw) {
+		delete debugDraw;
+		debugDraw = nil;
+	}
+	
+	if (m_world) {
+		delete m_world;
+	}
+	
     m_body = NULL;
     m_world = NULL;
-	// don't forget to call "super dealloc"
+	
 	[super dealloc];
 }
 @end

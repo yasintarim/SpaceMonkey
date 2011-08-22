@@ -41,9 +41,6 @@
 		m_backgroundImg.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild:m_backgroundImg z:0];
 		
-		
-		
-		
 		PauseMenuButtonLayer *menuButton = [[[PauseMenuButtonLayer alloc] init] autorelease];
 		[self addChild:menuButton z:92];
 		self.isAccelerometerEnabled = YES;
@@ -69,7 +66,6 @@
 			CCSprite *myActor = (CCSprite*)b->GetUserData();
 			myActor.position = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
 			myActor.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-
 		}	
 	}	
 }
@@ -96,7 +92,6 @@
     // Landscape left values
     b2Vec2 gravity(-acceleration.y * 15, acceleration.x *15);
     m_world->SetGravity(gravity);
-	
 }
 
 
@@ -120,8 +115,8 @@
 	
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
-	fixtureDef.density = 100;
-	fixtureDef.restitution = 0.1;
+	fixtureDef.density = 1000;
+	fixtureDef.restitution = 0.5;
 	body->CreateFixture(&fixtureDef);
 	//body->SetUserData(sprite);
 	

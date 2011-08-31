@@ -9,6 +9,7 @@
 #define PTM_RATIO 32.0
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#import "SimpleQueryCallback.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -37,6 +38,7 @@
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
 		m_backgroundImg = [CCSprite spriteWithFile:@"cembg.png"];
+
 		[m_backgroundImg setOpacity:210];
 		m_backgroundImg.position = ccp(winSize.width/2, winSize.height/2);
 		[self addChild:m_backgroundImg z:0];
@@ -124,15 +126,55 @@
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint touchLocation = [touch locationInView:[touch view]];
-    touchLocation = [[CCDirector sharedDirector]
-					 convertToGL:touchLocation];
+    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    b2BodyDef groundBodyDef;
+    groundBodyDef.type = b2_staticBody;
+    groundBodyDef.position.Set(0, 0);
+    b2Body* groundBody = m_world->CreateBody(&groundBodyDef);
     touchLocation = [self convertToNodeSpace:touchLocation];
-    b2Vec2 locationWorld =
-	b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
-    [self createBoxAtLocation:touchLocation
-					 withSize:CGSizeMake(30, 30)];
-    return TRUE;
+    b2Vec2 locationWorld = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+
+    b2AABB aabb;
+    b2Vec2 delta = b2Vec2(1.0/PTM_RATIO, 1.0/PTM_RATIO);
+    aabb.lowerBound = locationWorld - delta;
+    aabb.upperBound = locationWorld + delta;
+    
+    SimpleQueryCallback callback(locationWorld);
+    m_world->QueryAABB(&callback, aabb);
+    
+    if (callback.GetFixtureFound()) {
+        b2Body *body = callback.GetFixtureFound()->GetBody();
+        
+        b2MouseJointDef mouseJointDef;
+        mouseJointDef.bodyA = groundBody;
+        mouseJointDef.bodyB = body;
+        mouseJointDef.target = locationWorld;
+        mouseJointDef.maxForce = 100 * body->GetMass();
+        mouseJointDef.collideConnected = true;
+        m_mouseJoint = (b2MouseJoint*)m_world->CreateJoint(&mouseJointDef);
+        body->SetAwake(true);
+        return YES;
+    }
+    else
+    {
+        [self createBoxAtLocation:touchLocation withSize:CGSizeMake(30, 30)];
+        return TRUE;
+
+    }
 }
+
+-(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint touchLocation = [touch locationInView:[touch view]];
+    touchLocation =
+    [[CCDirector sharedDirector] convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    b2Vec2 locationWorld = b2Vec2(touchLocation.x/PTM_RATIO,touchLocation.x/PTM_RATIO);
+    if (m_mouseJoint)
+    {
+        m_mouseJoint->SetTarget(locationWorld);
+    }
+}
+                                 
 -(void)createWorld
 {	
 	b2Vec2 gravity = b2Vec2(0.0f,-30.0f);
@@ -147,7 +189,7 @@
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0, 0);
+	groundBodyDef.position.Set(0, 0); 
 	
 	b2Body* groundBody = m_world->CreateBody(&groundBodyDef);
 	

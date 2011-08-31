@@ -187,6 +187,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		842900C0140EA00400959C9F /* SimpleQueryCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleQueryCallback.h; sourceTree = "<group>"; };
 		A34D66D013D303D9001B49DF /* cemm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cemm.png; sourceTree = "<group>"; };
 		A351C42B13BFDC610072ABB0 /* PauseMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuLayer.h; sourceTree = "<group>"; };
 		A351C42C13BFDC610072ABB0 /* PauseMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuLayer.m; sourceTree = "<group>"; };
@@ -618,6 +619,7 @@
 			children = (
 				A377248313C23F4A0092E0F8 /* Menus */,
 				A3FEB9EE13BE5DFB006F0FF1 /* AppDelegate.h */,
+				842900C0140EA00400959C9F /* SimpleQueryCallback.h */,
 				A3FEB9EF13BE5DFB006F0FF1 /* AppDelegate.mm */,
 				A3FEB9F113BE5DFB006F0FF1 /* RootViewController.h */,
 				A3FEB9F213BE5DFB006F0FF1 /* RootViewController.m */,
@@ -1244,8 +1246,11 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = SpaceMonkey;
 			};
 			name = Debug;
 		};
@@ -1261,7 +1266,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = SpaceMonkey;
 			};
 			name = Release;
 		};

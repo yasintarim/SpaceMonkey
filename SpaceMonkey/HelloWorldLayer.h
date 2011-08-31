@@ -22,6 +22,7 @@
 	b2World* m_world;
 	b2Body* m_body;
 	GLESDebugDraw* debugDraw;
+    b2MouseJoint *m_mouseJoint;
 
 }
 
